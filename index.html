@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia sesión en Spotify</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #808080 -120%, #000 80%);
+            background-attachment: fixed;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            width: 400px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 60px 100px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .login-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .login-container h2 {
+            font-size: 10px;
+            margin-bottom: 8px;
+            color: #fff;
+            text-align: left;
+        }
+
+        .login-container img {
+            width: 50px;  /* Tamaño de la imagen */
+            height: 50px;
+            margin-bottom: 10px; /* Espacio entre la imagen y el título */
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #333;
+            border: 1px solid #555;
+            color: #fff;
+        }
+
+        .password-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            background-color: #000000;
+            border: 2px solid gray;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1DB954;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .links {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .links a {
+            color: #1DB954;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h0>
+            <center>
+                <img src="Spotify-Logo.png" alt="Spotify Logo">
+            </center>
+        </h0>
+
+        <h1>Inicia sesión en Spotify</h1>
+
+        <!-- Botones para registrarse con Google, Facebook, Apple -->
+        <button class="button">
+            <img src="google-logo.png" alt="Google"> Continuar con Google
+        </button>
+        <button class="button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"> Continuar con Facebook
+        </button>
+        <button class="button">
+            <img src="Logo-Apple.png" alt="Apple"> Continuar con Apple
+        </button>
+        <button class="button">Continuar con número de teléfono</button>
+
+        <div class="input-container">
+            <hr style="border: 0; border-top: 2px solid #ccc; width: -120%; margin: 20px auto;">
+            <h2>Email o nombre del usuario</h2>
+            <input type="text" id="email" placeholder="Email o nombre de usuario">
+
+            <h2>Contraseña</h2>
+            <div class="input-container">
+                <input type="password" id="password" placeholder="Contraseña">
+                <span class="password-icon" id="togglePassword">👁️</span>
+            </div>
+        </div>
+
+        <button class="login-button" id="loginButton">Iniciar Sesión</button>
+
+        <div class="links">
+            <p><a href="#"><u>¿Has olvidado tu contraseña?</u></a><br></p>
+            <a href="try.html">¿No tienes cuenta? <u>Regístrate en Spotify</u></a>
+        </div>
+    </div>
+
+    <script>
+        // Toggle de visibilidad de la contraseña
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+        togglePassword.addEventListener('click', function() {
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+
+        // Enviar datos del formulario de inicio de sesión al backend
+        document.getElementById('loginButton').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

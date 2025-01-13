@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            padding-top: 30px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 40px;
+            margin-bottom: -10px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 90px;
+            font-stretch: expanded;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        h1 span {
+            display: block;
+            font-size: rem;
+            font-weight: bold;
+            margin-bottom: -45px;
+            font-stretch: expanded;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .label {
+            align-self: flex-start;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #141414;
+            border: 1px solid #555;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        .link h2 a {
+            color: #1db954;
+            font-size: 13px;
+            margin-bottom: -200px;
+            text-align: left;
+        }
+
+        .btn-green {
+            background-color: #1db954;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        hr {
+            width: 100%;
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .btn-social {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Espacio entre el logo y el texto */
+        }
+
+        .btn-social img {
+            width: 20px; /* Tamaño del logo */
+            height: 20px;
+        }
+
+        .login {
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+
+        .login a {
+            color: #1db954;
+            text-decoration: none;
+        }
+
+        .btn-back {
+            background-color: #555;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px; /* Mueve el botón hacia abajo */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Spotify-Logo.png" alt="Logo" class="logo">
+
+        <h1>
+            <span>Regístrate</span><br>
+            <span>para empezar</span><br>
+            <span>a escuchar</span><br>
+            <span>contenido</span>
+        </h1>
+
+        <form>
+            <label for="email" class="label">Dirección de email</label>
+            <input type="text" placeholder="nombre@dominio.com">
+
+            <label for="password" class="label">Contraseña</label>
+            <input type="password" placeholder="Ingresa tu contraseña">
+
+            <div class="link">
+                <h2><a href="#"><u>Usar el número de teléfono</u></a></h2>
+            </div>
+            <button type="submit" class="btn-green">Siguiente</button>
+        </form>
+
+        <hr>
+        <button class="btn-social google">
+            <img src="google-logo.png" alt="Google Logo">
+            <span>Regístrate con Google</span>
+        </button>
+        <button class="btn-social facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+            <span>Regístrate con Facebook</span>
+        </button>
+        <button class="btn-social apple">
+            <img src="Logo-Apple.png" alt="Apple Logo">
+            <span>Regístrate con Apple</span>
+        </button>
+        <div class="login">
+            <p>¿Ya tienes una cuenta? <a href="index.html"><u>Inicia sesión aquí.</u></a></p>
+        </div>
+
+        <button class="btn-back" onclick="location.href='index.html';">Regresar</button>
+    </div>
+</body>
+</html>
