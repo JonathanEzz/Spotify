@@ -154,12 +154,12 @@
             <span>contenido</span>
         </h1>
 
-        <form>
+        <form id="registerForm">
             <label for="email" class="label">Dirección de email</label>
-            <input type="text" placeholder="nombre@dominio.com">
+            <input type="email" id="email" placeholder="nombre@dominio.com" required>
 
             <label for="password" class="label">Contraseña</label>
-            <input type="password" placeholder="Ingresa tu contraseña">
+            <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
 
             <div class="link">
                 <h2><a href="#"><u>Usar el número de teléfono</u></a></h2>
@@ -186,5 +186,50 @@
 
         <button class="btn-back" onclick="location.href='index.html';">Regresar</button>
     </div>
+
+    <script type="module">
+        // Importar funciones de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyC9yU31pvxX3pvr8sD5BLHbPgFJuHXXoKo",
+            authDomain: "spotify-8cc52.firebaseapp.com",
+            projectId: "spotify-8cc52",
+            storageBucket: "spotify-8cc52.firebasestorage.app",
+            messagingSenderId: "723976397757",
+            appId: "1:723976397757:web:b80ee0636acede177c68d4"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Manejo del formulario de registro
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Registro exitoso
+                    const user = userCredential.user;
+                    console.log("Usuario registrado:", user);
+                    alert("Cuenta creada exitosamente.");
+                    // Redirigir a la página de inicio de sesión o de bienvenida
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Error:", errorCode, errorMessage);
+                    alert("Error al registrar la cuenta. Por favor, verifica tus datos.");
+                });
+        });
+    </script>
 </body>
 </html>
+
